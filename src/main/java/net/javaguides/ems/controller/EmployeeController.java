@@ -2,6 +2,7 @@ package net.javaguides.ems.controller;
 
 import lombok.AllArgsConstructor;
 import net.javaguides.ems.dto.EmployeeDto;
+import net.javaguides.ems.entity.Employee;
 import net.javaguides.ems.service.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,4 +39,11 @@ public class EmployeeController {
         return ResponseEntity.ok(employees);
     }
 
+    // Build update Employee REST API
+    @PutMapping("{id}")
+    public ResponseEntity<EmployeeDto> updateEmployee(@PathVariable("id") Long EmployeeId,
+                                                      @RequestBody EmployeeDto updateEmployee){
+        EmployeeDto employeeDto = employeeService.updateEmployee(EmployeeId, updateEmployee);
+        return ResponseEntity.ok(employeeDto);
+    }
 }
